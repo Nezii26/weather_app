@@ -1,13 +1,36 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
+
+<body class="bg-secondary">
+
+    <center>
+
+        <div class="container">
+
+            <h1>Weather App</h1>
+
+            <input type="text" id="txtCity" placeholder="Enter City Name">
+
+            <input type="button" value="Search" onclick="searchWeather()">
+
+            <div class="flex justify-start h4" id="lblDisplay">
+
+            </div>
+
+        </div>
+
+    </center>
+
     <script src="app.js"></script>
+
 </body>
+
 </html>
