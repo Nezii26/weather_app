@@ -1,27 +1,6 @@
-/*
-.weather-card {
-    width: 350px;
-    padding: 25px;
-    margin: 20px auto;
-    text-align: center;
-    border-radius: 15px;
-    background: #202b3b;
-    color: white;
-    font-family: Arial;
+.container {
+    background-color: rgb(199, 223, 199);
+    margin: 10%;
+    padding: 20%;
+   
 }
-
-.weather-card img {
-    width: 100px;
-}
-
-.weather-card h1 {
-    font-size: 45px;
-    margin: 10px;
-}
-
-.weather-card p {
-    padding: 8px;
-    background: #334155;
-    border-radius: 8px;
-}
-*/
