@@ -9,25 +9,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="color: rgb(9, 90, 1);">
+<body>
 
-    <center>
+    
 
-        <div class="container">
+        <div class="weather-app">
 
-            <h1>Weather App</h1>
+            <div class="navbar">Weather App</div>
+            <div class="input-city">
+                <input type="text" id="txtCity" placeholder="Enter City Name">
+                <input type="button" value="Search" onclick="searchWeather()">
 
-            <input type="text" id="txtCity" placeholder="Enter City Name">
+            </div>
+            
+            <p id="msg"></p>
 
-            <input type="button" value="Search" onclick="searchWeather()">
-
-            <div id="lblDisplay">
-
+            <div class="main-box">
+                <div class="current" id="current"></div>
+                <div class="details" id="details"></div>
+            </div>
+            <div class="small-box">
+                <div class="hours" id="hours"></div>
+                <div class="datetime" id="datetime"></div>
             </div>
 
         </div>
 
-    </center>
+   
 
     <script src="app.js"></script>
 
