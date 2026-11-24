@@ -1,9 +1,61 @@
+const API_KEY = "1bc1cfb20247456c83d92034261311";
 
 function loadWeatherInfo(location) {
 
-    fetch('https://api.weatherapi.com/v1/current.json?key=1bc1cfb20247456c83d92034261311&q=' + location)
+    // forecast.json also contains "current", so one call gives everything
+    fetch("https://api.weatherapi.com/v1/forecast.json?key=" + API_KEY +
+        "&q=" + encodeURIComponent(location) + "&days=2")
         .then(res => res.json())
         .then(data => {
+
+            if (data.error) {
+                throw new Error(data.error.message);
+            }
+
+            document.getElementById("msg").innerText = "";
+            showCurrent(data);
+            showDetails(data);
+            showHours(data);
+            showDateTime(data);
+
+        })
+        .catch(error => {
+            document.getElementById("msg").innerText = "City not found! Please try again.";
+            console.log(error);
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*function loadWeatherInfo(location) {
+
+    fetch('https://api.weatherapi.com/v1/current.json?key=1bc1cfb20247456c83d92034261311&q=' + location)
+        .then(res => res.json())
+        .then(data => { 
+
+        })
 
             console.log(data);
 
@@ -53,4 +105,4 @@ function searchWeather() {
 
     loadWeatherInfo(txtCity);
 
-}
+}*/
