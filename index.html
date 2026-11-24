@@ -5,40 +5,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Weather App</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-    
+    <div class="container">
 
-        <div class="weather-app">
+        <h1>Weather App</h1>
 
-            <div class="navbar">Weather App</div>
-            <div class="input-city">
-                <input type="text" id="txtCity" placeholder="Enter City Name">
-                <input type="button" value="Search" onclick="searchWeather()">
+        <div class="search-box">
+            <input type="text" id="txtCity"
+                placeholder="Enter city name">
 
+            <button onclick="searchWeather()">Search</button>
+        </div>
+
+        <p id="msg"></p>
+
+        <div class="weather-content">
+
+            <!-- Current Weather -->
+            <div class="current" id="current">
+                <h2>Search a city</h2>
+                <p>Weather information will appear here.</p>
             </div>
-            
-            <p id="msg"></p>
 
-            <div class="main-box">
-                <div class="current" id="current"></div>
-                <div class="details" id="details"></div>
-            </div>
-            <div class="small-box">
-                <div class="hours" id="hours"></div>
-                <div class="datetime" id="datetime"></div>
-            </div>
+            <!-- Weather Details -->
+            <div class="details" id="details"></div>
 
         </div>
 
-   
+        <!-- Date and Time -->
+        <div id="dateTime"></div>
+
+        <!-- Hourly Forecast -->
+        <h2>Next 6 Hours</h2>
+
+        <div class="hours" id="hours"></div>
+
+        <!-- Temperature Chart -->
+        <h2>Next 24 Hours Temperature</h2>
+
+        <div class="chart-container">
+
+            <canvas id="weatherChart"></canvas>
+
+            <div class="weather-tooltip" id="weatherTooltip"></div>
+
+        </div>
+
+    </div>
 
     <script src="app.js"></script>
 
 </body>
-
 </html>
