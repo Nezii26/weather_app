@@ -109,26 +109,36 @@ h2 {
     text-align: center;
 }
 
+/* 6 Days Forecast Cards */
+
 .hours {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 12px;
+    display: grid !important;
+    grid-template-columns:  repeat(6, minmax(0, 1fr)) !important;
+    gap: 10px;
 }
 
 .hour-card {
     background: #334155;
-    padding: 15px 8px;
+    padding: 10px 5px;
     text-align: center;
     border-radius: 10px;
 }
 
+.hour-card h3 {
+    font-size: 14px;
+}
+
 .hour-card img {
-    width: 50px;
+    width: 40px;
+    height: 40px;
 }
 
 .hour-card p {
-    margin: 7px 0;
+    font-size: 11px;
+    margin: 6px 0;
 }
+
+/* Temperature Chart */
 
 .chart-container {
     position: relative;
@@ -158,6 +168,16 @@ h2 {
     height: 45px;
 }
 
+/* Responsive Design */
+
+@media (max-width: 900px) {
+
+    .hours {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
 @media (max-width: 700px) {
 
     .container {
@@ -170,7 +190,7 @@ h2 {
     }
 
     .hours {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .chart-container {

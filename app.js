@@ -6,7 +6,7 @@ const API_KEY = "1bc1cfb20247456c83d92034261311";
 // Load Weather Information
 function loadWeatherInfo(location) {
 
-    const url = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${encodeURIComponent(location)}&days=2&aqi=no&alerts=no`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${encodeURIComponent(location)}&days=6&aqi=no&alerts=no`;
 
     fetch(url)
 
@@ -32,7 +32,7 @@ function loadWeatherInfo(location) {
 
             showDetails(data);
 
-            showHours(data);
+            showDays(data);
 
             showDateTime(data);
 
@@ -134,33 +134,33 @@ function showDateTime(data) {
 
 
 
-// Show Next 6 Hours
-function showHours(data) {
 
-    const now = data.location.localtime_epoch;
+function showDays(data) {
 
-    const allHours = data.forecast.forecastday.flatMap(d => d.hour);
+    const forecastDays = data.forecast.forecastday;
 
-    const next6 = allHours
+    document.getElementById("hours").innerHTML = forecastDays
 
-        .filter(h => h.time_epoch > now)
-
-        .slice(0, 6);
-
-
-    document.getElementById("hours").innerHTML = next6
-
-        .map(h => `
+        .map(day => `
 
             <div class="hour-card">
 
-                <p>${h.time.split(" ")[1]}</p>
+                <h3>${day.date}</h3>
 
-                <img src="https:${h.condition.icon}" alt="Weather">
+                <img src="https:${day.day.condition.icon}"
+                     alt="Weather Icon">
 
-                <h3>${h.temp_c}°C</h3>
+                <h3>${day.day.avgtemp_c}°C</h3>
 
-                <p>${h.condition.text}</p>
+                <p>${day.day.condition.text}</p>
+
+                <p>Max: ${day.day.maxtemp_c}°C</p>
+
+                <p>Min: ${day.day.mintemp_c}°C</p>
+
+                <p>Humidity: ${day.day.avghumidity}%</p>
+
+                <p>Rain: ${day.day.daily_chance_of_rain}%</p>
 
             </div>
 
@@ -169,6 +169,7 @@ function showHours(data) {
         .join("");
 
 }
+
 
 
 
