@@ -294,12 +294,9 @@ function showTemperatureChart(data) {
 
 
                 tooltip: {
-
                     enabled: false,
                     external: function (context) {
-
-                        const tooltip = context.tooltip;
-
+                        const tooltip = context.tooltip:
 
                         if (tooltip.opacity === 0) {
 
