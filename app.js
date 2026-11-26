@@ -6,7 +6,7 @@ const API_KEY = "1bc1cfb20247456c83d92034261311";
 // Load Weather Information
 function loadWeatherInfo(location) {
 
-    const url = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${encodeURIComponent(location)}&days=6&aqi=no&alerts=no`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${encodeURIComponent(location)}&days=6&aqi=no&alerts=no`+location;
 
     fetch(url)
 
@@ -85,13 +85,9 @@ function showDetails(data) {
     const items = [
 
         ["Humidity", c.humidity + "%"],
-
         ["Cloud", c.cloud + "%"],
-
         ["Pressure", c.pressure_mb + " mb"],
-
         ["Wind Speed", c.wind_kph + " km/h " + c.wind_dir],
-
         ["UV Index", c.uv]
 
     ];
@@ -102,11 +98,8 @@ function showDetails(data) {
         .map(i => `
 
             <div class="bar">
-
                 <span>${i[0]}</span>
-
                 <span>${i[1]}</span>
-
             </div>
 
         `)
@@ -123,9 +116,7 @@ function showDateTime(data) {
     document.getElementById("dateTime").innerHTML = `
 
         <h3>Local Date & Time</h3>
-
         <p>${data.location.localtime}</p>
-
         <p>${data.location.tz_id}</p>
 
     `;
@@ -146,20 +137,12 @@ function showDays(data) {
             <div class="hour-card">
 
                 <h3>${day.date}</h3>
-
-                <img src="https:${day.day.condition.icon}"
-                     alt="Weather Icon">
-
+                <img src="https:${day.day.condition.icon}"alt="Weather Icon"
                 <h3>${day.day.avgtemp_c}°C</h3>
-
                 <p>${day.day.condition.text}</p>
-
                 <p>Max: ${day.day.maxtemp_c}°C</p>
-
                 <p>Min: ${day.day.mintemp_c}°C</p>
-
                 <p>Humidity: ${day.day.avghumidity}%</p>
-
                 <p>Rain: ${day.day.daily_chance_of_rain}%</p>
 
             </div>
@@ -175,9 +158,7 @@ function showDays(data) {
 
 // Gradient Variables
 let gradient;
-
 let width, height;
-
 let weatherChart;
 
 
@@ -186,30 +167,22 @@ let weatherChart;
 function getGradient(ctx, chartArea) {
 
     const chartWidth = chartArea.right - chartArea.left;
-
     const chartHeight = chartArea.bottom - chartArea.top;
 
 
     if (!gradient || width !== chartWidth || height !== chartHeight) {
-
         width = chartWidth;
-
         height = chartHeight;
 
 
         gradient = ctx.createLinearGradient(
-
             0, chartArea.bottom,
-
             0, chartArea.top
-
         );
 
 
         gradient.addColorStop(0, "#3B82F6");
-
         gradient.addColorStop(0.5, "#FACC15");
-
         gradient.addColorStop(1, "#EF4444");
 
     }
@@ -235,7 +208,6 @@ function showTemperatureChart(data) {
     const next24 = allHours
 
         .filter(h => h.time_epoch > now)
-
         .slice(0, 24);
 
 
@@ -249,41 +221,30 @@ function showTemperatureChart(data) {
 
     // Remove Previous Chart
     if (weatherChart) {
-
         weatherChart.destroy();
-
     }
 
 
     const ctx = document.getElementById("weatherChart").getContext("2d");
-
-
     const tooltipBox = document.getElementById("weatherTooltip");
 
 
     const config = {
-
         type: "line",
-
 
         data: {
 
             labels: labels,
-
-
             datasets: [{
 
                 label: "Temperature",
-
                 data: temperatures,
-
                 borderWidth: 3,
 
 
                 borderColor: function (context) {
 
                     const chart = context.chart;
-
                     const area = chart.chartArea;
 
 
@@ -300,19 +261,12 @@ function showTemperatureChart(data) {
 
 
                 backgroundColor: "rgba(59, 130, 246, 0.1)",
-
                 fill: true,
-
                 tension: 0.4,
-
                 pointRadius: 4,
-
                 pointHoverRadius: 8,
-
                 pointBackgroundColor: "#FFFFFF",
-
                 pointBorderColor: "#3B82F6",
-
                 pointBorderWidth: 2
 
             }]
@@ -323,14 +277,10 @@ function showTemperatureChart(data) {
         options: {
 
             responsive: true,
-
             maintainAspectRatio: false,
-
-
             interaction: {
 
                 intersect: false,
-
                 mode: "index"
 
             },
@@ -339,17 +289,13 @@ function showTemperatureChart(data) {
             plugins: {
 
                 legend: {
-
                     display: false
-
                 },
 
 
                 tooltip: {
 
                     enabled: false,
-
-
                     external: function (context) {
 
                         const tooltip = context.tooltip;
